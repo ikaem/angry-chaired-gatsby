@@ -3,7 +3,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image";
+import Img from "gatsby-image"
 
 interface LearnItemProps {
   frontmatter: {
@@ -20,21 +20,37 @@ interface LearnItemProps {
 }
 
 const LearnItem: React.FC<LearnItemProps> = ({
-  frontmatter: { title, date, frontmatterExcerpt: excerpt, featuredImage: { childImageSharp: { fluid }} },
+  frontmatter: {
+    title,
+    date,
+    frontmatterExcerpt: excerpt,
+    featuredImage: {
+      childImageSharp: { fluid },
+    },
+  },
   slug,
 }) => {
   // console.log("slug:", slug)
+
+  const data = useStaticQuery<{
+    site: { siteMetadata: { author: string } }
+  }>(graphql`
+    query {
+      site {
+        siteMetadata {
+          author
+        }
+      }
+    }
+  `)
+
   return (
     <LearnItemStyled className="learn-item">
       {/* <div className="learn-item__image-container">
         <img src="https://source.unsplash.com/350x350/?nature" alt="" />
       </div> */}
 
-      <Img 
-        className="learn-item__featured-image"
-        fluid={fluid}
-        alt={title}
-        />
+      <Img className="learn-item__featured-image" fluid={fluid} alt={title} />
 
       <div className="learn-item__learn-points">
         <Link to={slug}>
@@ -51,6 +67,9 @@ const LearnItem: React.FC<LearnItemProps> = ({
 
         <p className="learn-points__other">{excerpt}</p>
       </div>
+      <p className="learn-item__author">
+        by: <strong>{data.site.siteMetadata.author}</strong>
+      </p>
     </LearnItemStyled>
   )
 }
@@ -114,6 +133,12 @@ const LearnItemStyled = styled.li`
     /* height: 100px; */
   }
 
+  .learn-item__author {
+    font-size: 0.9rem;
+    padding: 0 1rem 1rem;
+    color: grey;
+  }
+
   @media (min-width: 40rem) {
     /* height: 16rem; */
 
@@ -128,6 +153,10 @@ const LearnItemStyled = styled.li`
 
     .learn-points__other {
       font-size: 1.15rem;
+    }
+
+    .learn-item__author {
+      font-size: 1rem;
     }
   }
 `

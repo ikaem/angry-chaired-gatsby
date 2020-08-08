@@ -4,11 +4,15 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout.component"
 import PageTitle from "../elements/page-title.element"
 
-const Contact: React.FC = () => {
+const Contact: React.FC<{ data: { allFile: { totalCount: number }}}> = ({ data }) => {
+
+  console.log("allFile data:", data);
+
   const [submissionState, setSubmissionState] = useState<{
     submitting: boolean
     status: { ok: boolean; msg: string } | null
@@ -191,6 +195,14 @@ const Contact: React.FC = () => {
 }
 
 export default Contact
+
+export const query = graphql`
+  query {
+    allFile {
+      totalCount
+    }
+  }
+`
 
 const ContactStyled = styled.main`
   padding: 0.5rem 1rem;

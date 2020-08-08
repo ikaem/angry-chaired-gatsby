@@ -3,7 +3,12 @@
 import React from "react"
 import styled from "styled-components"
 
-const PageTitle: React.FC<{ pageTitle: string; path?: string }> = ({
+interface PageTitleProps {
+  pageTitle: string; 
+  path?: string; 
+}
+
+const PageTitle: React.FC<PageTitleProps> = ({
   pageTitle,
   path,
 }) => {
@@ -13,7 +18,6 @@ const PageTitle: React.FC<{ pageTitle: string; path?: string }> = ({
 export default PageTitle
 
 const PageTitleStyled = styled.h1`
-  /* color: white; */
   color: var(--smudgedblue);
   font-size: 1.5rem;
   font-weight: 400;
@@ -21,7 +25,7 @@ const PageTitleStyled = styled.h1`
   margin-bottom: 1rem;
   align-self: ${(props: { path: string }) => (props.path ? "center" : "flex-start")};
   padding-bottom: 0.25rem;
-  border-bottom: ${(props: { path: string }) => (props.path ? "16px solid var(--red)" : "8px solid var(--usedyellow)")};;
+  border-bottom: ${(props) => (props.path ? "16px solid var(--red)" : "8px solid var(--usedyellow)")};;
 
   @media (min-width: 40rem) {
     font-size: 1.75rem;

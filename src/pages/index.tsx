@@ -40,10 +40,12 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({
-  location: { pathname },
+  location,
   data,
 }) => {
   console.log(data.allMarkdownRemark.edges[0].node.frontmatter)
+
+  const { pathname } = location;
 
   return (
     <Layout path={pathname}>
@@ -52,7 +54,7 @@ const HomePage: React.FC<HomePageProps> = ({
         <section className="home-page__i-learn">
           <PageTitle path={pathname} pageTitle={"I learn:"} />
           <ILearnMapper projects={data.allMarkdownRemark.edges} />
-          <MoreLearnsLink />
+          {/* <MoreLearnsLink /> */}
         </section>
       </HomePageStyled>
     </Layout>

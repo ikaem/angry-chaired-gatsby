@@ -1,5 +1,5 @@
 ---
-title: React w. GraphQL & JWT
+title: Project 3
 learningPeriod: 30 June 2020 to 5 July 2020
 date: "2020-08-05"
 frontmatterExcerpt: A practice React App using JSON Web Token to authenticate users. JWTs are used in-memory, together with Apollo Client's cache and http-only cookies, to maintain login sessions.

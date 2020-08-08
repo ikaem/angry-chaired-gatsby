@@ -9,11 +9,15 @@ import Layout from "../components/layout.component"
 import PageTitle from "../elements/page-title.element"
 
 const About: React.FC<{ data: any }> = ({ data }) => {
+
+  console.log("data in about:", data);
+
+
   return (
     <Layout>
       <AboutStyled className="about-page">
         <section className="about-page__about-section">
-          <PageTitle pageTitle={"About Angry Chaired"} />
+          <PageTitle pageTitle={"About Angry Chaired by kaem"} />
           <h2 className="about-section__paragraph-title">What is it?</h2>
           <p className="about-section__paragraph-content">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
@@ -106,6 +110,12 @@ export const query = graphql`
         fluid {
           ...GatsbyImageSharpFluid
         }
+      }
+    },
+    metadata: site {
+      siteMetadata {
+        title 
+        author
       }
     },
     testFixed: file(relativePath: { eq: "data/images/my-image.jpg"}) {

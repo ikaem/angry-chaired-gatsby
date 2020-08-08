@@ -2,7 +2,7 @@
 
 import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
-import "../index.css";
+import "../index.css"
 
 import Header from "./header.component"
 import Footer from "./footer.component"
@@ -11,7 +11,14 @@ import Currently from "./currently.component"
 
 import "../utils/fontawesome"
 
-const Layout: React.FC<{ children: React.ReactNode, path?: string }> = ({ children, path }) => {
+interface LayoutProps {
+  children: React.ReactNode
+  path?: string
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, path }) => {
+
+
   return (
     <LayoutStyled className="layout">
       <GlobalStyle />
@@ -28,11 +35,10 @@ export default Layout
 
 const LayoutStyled = styled.div`
   height: 100%;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background-color: var(--touchedwhite);
-
 
   @media (min-width: 60rem) {
     /* margin: 0 10rem; */

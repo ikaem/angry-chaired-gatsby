@@ -7,11 +7,7 @@ import styled from "styled-components"
 const Header: React.FC = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false)
 
-  const {
-    site: {
-      siteMetadata: { title },
-    },
-  } = useStaticQuery<{ site: { siteMetadata: { title: string } } }>(
+  const data = useStaticQuery<{ site: { siteMetadata: { title: string } } }>(
     graphql`
       query {
         site {
@@ -23,6 +19,10 @@ const Header: React.FC = () => {
     `
   )
 
+  console.log("header static query data:", data);
+
+  const { site: { siteMetadata: { title }}} = data;
+  
   return (
     <HeaderStyled isMobileNavOpen={isMobileNavOpen} className="main-header">
       <div className="main-header__logo-container">
